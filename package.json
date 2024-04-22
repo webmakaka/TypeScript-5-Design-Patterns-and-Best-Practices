@@ -1,0 +1,19 @@
+{
+  "name": "typescript-5-design-patterns-and-best-practices",
+  "version": "1.0.0",
+  "description": "Code Repository for the Typescript 5 Design Patterns and best practices book",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build --workspaces --if-present"
+  },
+  "keywords": [
+    "typescript",
+    "best practices",
+    "design patterns"
+  ],
+  "author": "Theo Despoudis",
+  "license": "ISC",
+  "workspaces": [
+    "chapters/*"
+  ]
+}

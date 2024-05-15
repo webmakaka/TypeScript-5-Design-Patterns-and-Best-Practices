@@ -13,12 +13,11 @@ const user = new User("Theo")
 console.log(user.getName()) // Output: "Theo"
 
 abstract class BaseApiClient {
-  abstract fetch(req: RequestInfo): Promise<any> // More specific request type
+  abstract fetch(req: RequestInfo): Promise<any>
 
   protected async performFetch(req: RequestInfo): Promise<any> {
     const response = await fetch(req)
 
-    // Type guard or type assertion (TypeScript 5) to potentially narrow response type
     if (response.ok) {
       return response.json() // Assuming JSON response
     } else {

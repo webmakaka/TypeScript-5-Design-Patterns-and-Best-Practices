@@ -4,7 +4,8 @@
   "description": "Code Repository for the Typescript 5 Design Patterns and best practices book",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build --workspaces --if-present"
+    "build": "npm run build --workspaces --if-present",
+    "test": "vitest"
   },
   "keywords": [
     "typescript",

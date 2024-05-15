@@ -1,7 +1,34 @@
-function createAccount(username, accountType) {
-    return { username, accountType };
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
+var Animal = /** @class */ (function () {
+    function Animal() {
+    }
+    Object.defineProperty(Animal.prototype, "sleep", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function () { }
+    });
+    return Animal;
+}());
+var Cat = /** @class */ (function (_super) {
+    tslib_1.__extends(Cat, _super);
+    function Cat() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(Cat.prototype, "miaw", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function () { }
+    });
+    return Cat;
+}(Animal));
+// function petAnimal<T>(value: T, getDefault: () => NoInfer<T>): T {
+function petAnimal(value, getDefault) {
+    // ... function logic ...
+    return value || getDefault();
 }
-const checkingAccount = createAccount("John Doe", "checking"); // Valid
-export {};
-// Now this is correctly rejected:
-// const invalidAccount: UserAccount<string> = createAccount("Jane Doe", "credit") // Error: Argument of type 'string' is not assignable to parameter of type '"checking" | "savings" | "investment"'.
+// This would compile without errors
+petAnimal(new Cat(), function () { return new Animal(); });

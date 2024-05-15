@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Chapter 2 HTML DOM Example",
+      "type": "typescript",
+      "tsconfig": "chapters/chapter-2_Core_Principles_and_use_cases/src/DOM/tsconfig.json", // Adjust path if needed
+      "problemMatcher": "$tsc"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 enum Direction {
-  Up = 1,
-  Down, // Implicitly assigned 2
-  Left, // Implicitly assigned 3
-  Right, // Implicitly assigned 4
+  Up = 0,
+  Down, // Implicitly assigned 1
+  Left, // Implicitly assigned 2
+  Right, // Implicitly assigned 3
 }
 
 let userDirection: Direction = Direction.Up

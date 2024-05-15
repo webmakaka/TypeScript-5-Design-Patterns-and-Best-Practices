@@ -1,5 +1,8 @@
-class User {
-    constructor(name) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
+var User = /** @class */ (function () {
+    function User(name) {
         Object.defineProperty(this, "name", {
             enumerable: true,
             configurable: true,
@@ -8,30 +11,71 @@ class User {
         });
         this.name = name;
     }
-    getName() {
-        return this.name;
-    }
-}
-const user = new User("Theo");
+    Object.defineProperty(User.prototype, "getName", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function () {
+            return this.name;
+        }
+    });
+    return User;
+}());
+var user = new User("Theo");
 console.log(user.getName()); // Output: "Theo"
-class BaseApiClient {
-    async performFetch(req) {
-        const response = await fetch(req);
-        // Type guard or type assertion (TypeScript 5) to potentially narrow response type
-        if (response.ok) {
-            return response.json(); // Assuming JSON response
-        }
-        else {
-            throw new Error(`API request failed with status ${response.status}`);
-        }
+var BaseApiClient = /** @class */ (function () {
+    function BaseApiClient() {
     }
-}
-class UsersClient extends BaseApiClient {
-    async fetch(req) {
-        const data = await this.performFetch(req);
-        return data;
+    Object.defineProperty(BaseApiClient.prototype, "performFetch", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function (req) {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                var response;
+                return tslib_1.__generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, fetch(req)];
+                        case 1:
+                            response = _a.sent();
+                            if (response.ok) {
+                                return [2 /*return*/, response.json()]; // Assuming JSON response
+                            }
+                            else {
+                                throw new Error("API request failed with status ".concat(response.status));
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        }
+    });
+    return BaseApiClient;
+}());
+var UsersClient = /** @class */ (function (_super) {
+    tslib_1.__extends(UsersClient, _super);
+    function UsersClient() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-}
-const client = new UsersClient();
+    Object.defineProperty(UsersClient.prototype, "fetch", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function (req) {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                var data;
+                return tslib_1.__generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.performFetch(req)];
+                        case 1:
+                            data = _a.sent();
+                            return [2 /*return*/, data];
+                    }
+                });
+            });
+        }
+    });
+    return UsersClient;
+}(BaseApiClient));
+var client = new UsersClient();
 client.fetch("/users");
-export {};

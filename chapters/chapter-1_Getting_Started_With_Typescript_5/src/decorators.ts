@@ -1,6 +1,9 @@
 function memoize<T>(originalMethod: any, _context: any) {
   let cache: Map<string, T> = new Map()
-  return function (this: any, ...args: any[]) {
+  if (typeof originalMethod !== "function") {
+    throw new Error("Memoize decorator can only be used on functions")
+  }
+  return function (this: unknown, ...args: unknown[]) {
     const key = JSON.stringify(args)
 
     if (cache.has(key)) {

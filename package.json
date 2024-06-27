@@ -16,5 +16,8 @@
   "license": "ISC",
   "workspaces": [
     "chapters/*"
-  ]
+  ],
+  "devDependencies": {
+    "jest-extended": "^4.0.2"
+  }
 }

@@ -2,22 +2,30 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 function Singleton(constructor) {
-    return /** @class */ (function (_super) {
-        tslib_1.__extends(class_1, _super);
-        function class_1() {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
+    var _a;
+    return _a = /** @class */ (function (_super) {
+            tslib_1.__extends(class_1, _super);
+            function class_1() {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    args[_i] = arguments[_i];
+                }
+                var _this = _super.apply(this, args) || this;
+                if (!_this.constructor._instance) {
+                    ;
+                    _this.constructor._instance = _this;
+                }
+                return _this.constructor._instance;
             }
-            var _this = _super.apply(this, args) || this;
-            if (!_this.constructor._instance) {
-                ;
-                _this.constructor._instance = _this;
-            }
-            return _this.constructor._instance;
-        }
-        return class_1;
-    }(constructor));
+            return class_1;
+        }(constructor)),
+        Object.defineProperty(_a, "_instance", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: null
+        }),
+        _a;
 }
 var DecoratedSingleton = /** @class */ (function () {
     function DecoratedSingleton() {

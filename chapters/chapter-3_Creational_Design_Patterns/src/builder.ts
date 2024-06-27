@@ -23,10 +23,10 @@ export interface CarBuilder {
 }
 
 export class ConcreteCarBuilder implements CarBuilder {
-  private car: Car
+  private car: Car;
 
   constructor() {
-    this.reset()
+    this.car = new Car()
   }
 
   reset() {

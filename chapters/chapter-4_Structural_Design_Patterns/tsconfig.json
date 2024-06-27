@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "useDefineForClassFields": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "lib": ["es2018", "dom"],
+    "outDir": "dist",
+    "moduleDetection": "force",
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noEmitHelpers": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "./dist/**/*",
+    "src/**/*.test.ts",
+    "src/deno/*",
+    "src/bun/*",
+    "src/react/*",
+    "src/pick.ts",
+    "src/vite/*"
+  ]
+}

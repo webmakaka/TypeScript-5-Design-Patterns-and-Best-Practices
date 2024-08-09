@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Directory = exports.File = void 0;
 var File = /** @class */ (function () {
     function File(name) {
         Object.defineProperty(this, "name", {
@@ -20,6 +21,7 @@ var File = /** @class */ (function () {
     });
     return File;
 }());
+exports.File = File;
 var Directory = /** @class */ (function () {
     function Directory(name) {
         Object.defineProperty(this, "name", {
@@ -71,6 +73,7 @@ var Directory = /** @class */ (function () {
     });
     return Directory;
 }());
+exports.Directory = Directory;
 // Usage example
 var root = new Directory("Root");
 var file1 = new File("file1.txt");

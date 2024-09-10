@@ -1,7 +1,7 @@
 {
-  "name": "@typescript-5-design-patterns-and-best-practices/chapter5",
+  "name": "@typescript-5-design-patterns-and-best-practices/chapter6",
   "version": "1.0.0",
-  "description": "Chapter 5",
+  "description": "Chapter 6",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": true,

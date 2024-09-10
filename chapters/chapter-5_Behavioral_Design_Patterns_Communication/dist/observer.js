@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Subject = void 0;
 var tslib_1 = require("tslib");
 var Subject = /** @class */ (function () {
     function Subject() {
@@ -40,6 +41,7 @@ var Subject = /** @class */ (function () {
     });
     return Subject;
 }());
+exports.Subject = Subject;
 var ConcreteSubject = /** @class */ (function (_super) {
     tslib_1.__extends(ConcreteSubject, _super);
     function ConcreteSubject() {

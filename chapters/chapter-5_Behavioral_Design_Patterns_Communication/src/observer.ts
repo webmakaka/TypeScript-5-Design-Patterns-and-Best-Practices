@@ -1,8 +1,8 @@
-interface Subscriber {
+export interface Subscriber {
   notify(message?: any): void
 }
 
-abstract class Subject {
+export abstract class Subject {
   private subscribers: Subscriber[] = []
 
   public addSubscriber(s: Subscriber): void {

@@ -30,3 +30,20 @@ console.log(result1) // Output: 5
 
 const result2 = myClass.addNumbers(2, 3)
 console.log(result2) // Output: 5
+
+function log(originalMethod: any, context: ClassMethodDecoratorContext) {
+  function replacementMethod(this: any, ...args: any[]) {
+    console.log(`Calling ${String(context.name)}`)
+    return originalMethod.call(this, ...args)
+  }
+  return replacementMethod
+}
+
+class Calculator {
+  @log
+  add(x: number, y: number): number {
+    return x + y
+  }
+}
+
+new Calculator().add(2, 3)

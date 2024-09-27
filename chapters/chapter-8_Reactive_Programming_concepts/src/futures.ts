@@ -2,7 +2,7 @@ type Reject = (reason?: any) => void
 type Resolve<T> = (value: T) => void
 type Execution<E, T> = (resolve: Resolve<T>, reject: Reject) => () => void
 
-class Future<E, T> {
+export class Future<E, T> {
   private fn: Execution<E, T>
 
   constructor(ex: Execution<E, T>) {
@@ -40,10 +40,10 @@ const delayedTask = new Future<Error, string>((resolve, reject) => {
 })
 
 // Chain operations
-const uppercaseTask = delayedTask.then((value) => Future.success(value.toUpperCase()))
+export const uppercaseTask = delayedTask.then((value) => Future.success(value.toUpperCase()))
 
 // Execute the Future
-const cancelTask = uppercaseTask.fork(
+export const cancelTask = uppercaseTask.fork(
   (error) => console.error("Task failed:", error),
   (result) => console.log("Task succeeded:", result),
 )

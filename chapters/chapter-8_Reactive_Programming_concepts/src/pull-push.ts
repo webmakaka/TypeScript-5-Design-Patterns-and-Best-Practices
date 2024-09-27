@@ -1,9 +1,5 @@
-class Producer {
-    private storage: Storage;
-
-    constructor(storage: Storage) {
-        this.storage = storage;
-    }
+export class Producer {
+    constructor(private storage: Storage) {}
 
     public async updateData(newData: any): Promise<void> {
         await this.storage.save(newData);
@@ -16,12 +12,8 @@ class Producer {
     }
 }
 
-class Consumer {
-    private collector: Collector;
-
-    constructor(collector: Collector) {
-        this.collector = collector;
-    }
+export class Consumer {
+    constructor(private collector: Collector) {}
 
     public async pullData(): Promise<void> {
         const data = await this.collector.pullData();
@@ -29,7 +21,7 @@ class Consumer {
     }
 }
 
-class Storage {
+export class Storage {
     private data: any[] = [];
 
     public async save(newData: any): Promise<void> {
@@ -52,12 +44,8 @@ class Storage {
     }
 }
 
-class Collector {
-    private storage: Storage;
-
-    constructor(storage: Storage) {
-        this.storage = storage;
-    }
+export class Collector {
+    constructor(private storage: Storage) {}
 
     public async pullData(): Promise<any[]> {
         return await this.storage.getData();

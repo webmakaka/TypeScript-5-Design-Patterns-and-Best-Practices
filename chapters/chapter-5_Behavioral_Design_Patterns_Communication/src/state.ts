@@ -2,10 +2,7 @@ export interface State {
   handle(): void
 }
 export class Context {
-  private state: State
-  constructor(initialState: State) {
-    this.state = initialState
-  }
+  constructor(private state: State) {}
   public request(): void {
     this.state.handle()
   }

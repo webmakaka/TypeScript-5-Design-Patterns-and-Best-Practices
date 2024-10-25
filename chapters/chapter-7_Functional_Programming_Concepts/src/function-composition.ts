@@ -24,8 +24,26 @@ const formatUserInput = (input: string): string => {
 console.log(formatUserInput("  john doe  ")) // Output: "Johndoe..."
 console.log(formatUserInput("ALICE IN WONDERLAND")) // Output: "Aliceinwo..."
 
-function compose<T>(...fns: Array<(arg: T) => T>) {
-  return (x: T) => fns.reduceRight((acc, fn) => fn(acc), x)
+function compose<T extends any[], R1, R2>(
+  f1: (...args: T) => R1,
+  f2: (a: R1) => R2
+): (...args: T) => R2;
+function compose<T extends any[], R1, R2, R3>(
+  f1: (...args: T) => R1,
+  f2: (a: R1) => R2,
+  f3: (a: R2) => R3
+): (...args: T) => R3;
+function compose<T extends any[], R1, R2, R3, R4>(
+  f1: (...args: T) => R1,
+  f2: (a: R1) => R2,
+  f3: (a: R2) => R3,
+  f4: (a: R3) => R4
+): (...args: T) => R4;
+function compose(...fns: Function[]) {
+  return fns.reduce(
+    (prevFn, nextFn) => (...args: any) => nextFn(prevFn(...args)),
+    (value: any) => value
+  );
 }
 function curry<T, U, V>(fn: (a: T, b: U) => V): (a: T) => (b: U) => V {
   return (a: T) => (b: U) => fn(a, b)
@@ -34,3 +52,23 @@ const curriedTruncate = curry(truncate)
 const formatAndTruncate = compose((s: string) => curriedTruncate(s)(7), removeSpaces, capitalizeFirstLetter)
 console.log(formatAndTruncate("  john doe  ")) // Output: "Johndoe..."
 console.log(formatAndTruncate("ALICE IN WONDERLAND")) // Output: "Alicein..."
+
+interface Person {
+  name: string;
+  age: number;
+}
+
+function getDisplayName(p: Person): string {
+  return p.name.toLowerCase();
+}
+
+function getLength(s: string): number {
+  return s.length;
+}
+
+// Now the type of getDisplayNameLength is correctly inferred as '(p: Person) => number'
+const getDisplayNameLength = compose(getDisplayName, getLength);
+
+// Usage example
+const person: Person = { name: "John Doe", age: 30 };
+console.log(getDisplayNameLength(person)); // Output: 8

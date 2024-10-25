@@ -1,5 +1,5 @@
 import { of, from, interval, Observable } from "rxjs"
-import { filter, take, share, map } from "rxjs/operators"
+import { filter, take, share, map, tap } from "rxjs/operators"
 
 import { mergeMap, catchError } from "rxjs/operators"
 
@@ -27,12 +27,11 @@ const randomValues = new Observable((subscriber) => {
     subscriber.next(getNextRandom().next().value)
   }, 1000)
 })
-interval(1000)
-  .pipe(
-    take(5),
-    map((v: number) => v * v),
-  )
-  .subscribe((v: number) => console.log(`Squared value: ${v}`))
+interval(1000).pipe(
+  take(5),
+  map((v: number) => v * v),
+  tap(v => console.log(`Squared value: ${v}`)) // Side effect moved to tap
+).subscribe();
 // Output: Squared value: 0, 1, 4, 9, 16
 
 let origin = from([1, 2, 3, 4, new Error("Error")]);
@@ -53,9 +52,11 @@ of([1, 2, 3]).subscribe({
   complete: () => console.info("Completed")
 });
 
-of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-  .pipe(filter((v: number) => v % 3 === 0))
-  .subscribe((v: number) => console.log(`Divisible by 3: ${v}`))
+of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).pipe(
+  tap(v => console.log(`Processing value: ${v}`)), // Log before filtering
+  filter((v: number) => v % 3 === 0),
+  tap(v => console.log(`Divisible by 3: ${v}`))   // Log after filtering
+).subscribe();
 // Output: Divisible by 3: 3, 6, 9
 
 from([

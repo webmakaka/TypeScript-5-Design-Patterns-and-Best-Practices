@@ -26,27 +26,32 @@ export class ImperialSystem {
 }
 
 export class ImperialToMetricAdapter implements MetricCalculator {
-    private imperialSystem: ImperialSystem;
+  private imperialSystem: ImperialSystem
 
-    constructor(imperialSystem: ImperialSystem) {
-        this.imperialSystem = imperialSystem;
+  constructor(imperialSystem: ImperialSystem) {
+    this.imperialSystem = imperialSystem
+  }
+
+  getDistanceInMeters(): number {
+    const feet = this.imperialSystem.getDistanceInFeet()
+
+    if (typeof feet !== "number" || isNaN(feet)) {
+      throw new Error("Invalid distance in feet provided")
     }
 
-    getDistanceInMeters(): number {
-        const feet = this.imperialSystem.getDistanceInFeet();
-        return feet * 0.3048;
-    }
+    return feet * 0.3048 // Convert feet to meters
+  }
 }
 
 export class Reporter {
-    static reportDistance(calculator: MetricCalculator) {
-        console.log(`The distance is ${calculator.getDistanceInMeters()} meters.`);
-    }
+  static reportDistance(calculator: MetricCalculator) {
+    console.log(`The distance is ${calculator.getDistanceInMeters()} meters.`)
+  }
 }
 
-const metricDistance = new MetricSystem(5);
-Reporter.reportDistance(metricDistance);
+const metricDistance = new MetricSystem(5)
+Reporter.reportDistance(metricDistance)
 
-const imperialDistance = new ImperialSystem(10);
-const adapter = new ImperialToMetricAdapter(imperialDistance);
-Reporter.reportDistance(adapter);
+const imperialDistance = new ImperialSystem(10)
+const adapter = new ImperialToMetricAdapter(imperialDistance)
+Reporter.reportDistance(adapter)
